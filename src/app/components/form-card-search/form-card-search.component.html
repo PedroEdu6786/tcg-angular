@@ -1,0 +1,37 @@
+<form class="mb-3 row" [formGroup]="cardToSearcgGroup">
+  <ul class="navbar-nav mt-3">
+    <li class="nav-item col me-2">
+        <div class="row">
+            <div class="col">
+                <input
+                  id="cardToSearch"
+                  type="text"
+                  class="form-control"
+                  placeholder="Card Name:"
+                  formControlName="cardToSearch"
+                />
+            </div>
+        </div>
+    </li>
+    <li class="nav-item col me-2">
+        <div class="row">
+            <div class="col">
+                <select
+                  class="form-select"
+                  aria-label="Game"
+                  formControlName="categoryToSearch"
+                  [value]='1'
+                >
+                  <option value="1">Any</option>
+                  <option value="2">Magic!</option>
+                  <option value="3">Pokemon</option>
+                  <option value="4">Yu-Gi-Oh</option>
+                </select>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item col">
+      <button (click)="searchCard()" class="btn btn-success">Search</button>
+    </li>
+  </ul>
+</form>

@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ps-3">
+  <div class="container-fluid">
+    <a class="navbar-brand fs-3" routerLink="">Home</a>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item ">
+          <a class="nav-link " routerLink="/yugioh">Yu-Gi-Oh</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " routerLink="/pokemon">Pokemon</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " routerLink="/magic">Magic!</a>
+        </li>
+      </ul>
+      <div class="nav-item text-white">
+        <app-form-card-search></app-form-card-search>
+      </div>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>

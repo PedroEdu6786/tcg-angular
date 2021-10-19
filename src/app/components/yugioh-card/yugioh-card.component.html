@@ -1,0 +1,67 @@
+<div
+  class="container row justify-content-evenly mw-100 mt-3"
+  *ngIf="!isLoading; else else_b"
+>
+  <div class="text-center fs-1 text">
+    {{ cardData.data[0].name }}
+  </div>
+  <div class="row justify-content-center mt-5">
+    <div class="col-4">
+      <p class="fs-3">Description:</p><p> {{ cardData.data[0].desc }}</p>
+      <p>Type: {{ cardData.data[0].type }}</p>
+      <p>Attack: {{ cardData.data[0].atk }}</p>
+      <p>Deffence: {{ cardData.data[0].def }}</p>
+      <p>Level: {{ cardData.data[0].level }}</p>
+      <p>Race: {{ cardData.data[0].race }}</p>
+    </div>
+    <div class="col-3">
+      <img
+        src="{{ cardData.data[0].card_images[0].image_url }}"
+        class="card-img-top"
+        alt="..."
+      />
+    </div>
+  </div>
+  <div class="row justify-content-center mt-5">
+    <div class="col-3">
+      <p class="fs-3">Sets:</p>
+      <div
+        class="card mb-3"
+        style="width: 18rem"
+        *ngFor="let set of cardData.data[0].card_sets"
+      >
+        <div class="card-header">
+          {{ set.set_name }}
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">{{ set.set_code }}</li>
+          <li class="list-group-item">{{ set.set_rarity }}</li>
+          <li class="list-group-item">{{ set.set_rarity_code }}</li>
+          <li class="list-group-item">{{ set.set_price }}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-3">
+      <p class="fs-3">Prices:</p>
+      <div
+        class="card"
+        style="width: 18rem"
+        *ngFor="let set of cardData.data[0].card_prices"
+      >
+        <div class="card-header">Price</div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">{{ set.cardmarket_price }}</li>
+          <li class="list-group-item">{{ set.tcgplayer_price }}</li>
+          <li class="list-group-item">{{ set.amazon_price }}</li>
+          <li class="list-group-item">{{ set.coolstuffinc_price }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #else_b>
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</ng-template>
