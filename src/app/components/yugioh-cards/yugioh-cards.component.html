@@ -1,7 +1,16 @@
+<div class="bg-image"
+style="
+  background-image: url('/assets/img/background.png');
+  height: 100%;
+">
 <div
   class="container row justify-content-evenly mw-100"
   *ngIf="!isLoading; else else_b"
 >
+<div class="nav-item text-white col-2">
+  <app-form-card-search></app-form-card-search>  
+</div>
+
   <div
     class="card col-4 mt-5 border-dark"
     style="width: 18rem"
@@ -55,3 +64,5 @@
     <span class="visually-hidden">Loading...</span>
   </div>
 </ng-template>
+
+</div>
