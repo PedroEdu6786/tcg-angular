@@ -15,6 +15,7 @@ export class DeckBuilderComponent implements OnInit {
   public isLoading = false;
   public currPage = 1;
   public selectedCard!: Card;
+  public cardDeck: Card[] = [];
 
   constructor(
     private builderService: DeckBuilderService,
@@ -44,7 +45,12 @@ export class DeckBuilderComponent implements OnInit {
     this.isLoading = false;
   }
 
+  handleAddToDeck() {
+    this.cardDeck.push(this.selectedCard);
+    console.log(this.cardDeck);
+  }
+
   handleSelectedCard(id: string) {
-    this.selectedCard = this.cardsData.data.find((card) => card.id === id)!
+    this.selectedCard = this.cardsData.data.find((card) => card.id === id)!;
   }
 }
