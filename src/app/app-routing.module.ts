@@ -6,7 +6,7 @@ import { PokemonCardsComponent } from './components/pokemon-cards/pokemon-cards.
 import { SearchCardsComponent } from './components/search-cards/search-cards.component';
 import { YugiohCardComponent } from './components/yugioh-card/yugioh-card.component';
 import { YugiohCardsComponent } from './components/yugioh-cards/yugioh-cards.component';
-import { DeckBuilderComponent } from './deck-builder/deck-builder.component';
+import { DeckBuilderComponent } from './components/deck-builder/deck-builder.component';
 const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'pokemon', component: PokemonCardsComponent },
@@ -15,11 +15,11 @@ const routes: Routes = [
   { path: 'yugioh/card/:card-name', component: YugiohCardComponent },
   { path: 'deckselector', component: DeckSelectorComponent },
   { path: 'search', component: SearchCardsComponent },
-  {path: 'builder', component: DeckBuilderComponent},
+  { path: 'builder/:cardType', component: DeckBuilderComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

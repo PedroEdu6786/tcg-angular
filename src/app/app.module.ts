@@ -15,7 +15,7 @@ import { DeckSelectorService } from './service/deckselector/deck-selector.servic
 import { YugiohCardComponent } from './components/yugioh-card/yugioh-card.component';
 import { FormCardSearchComponent } from './components/form-card-search/form-card-search.component';
 import { SearchCardsComponent } from './components/search-cards/search-cards.component';
-import { DeckBuilderComponent } from './deck-builder/deck-builder.component';
+import { DeckBuilderComponent } from './components/deck-builder/deck-builder.component';
 import { DeckBuilderService } from './service/builder/deck-builder.service';
 @NgModule({
   declarations: [
