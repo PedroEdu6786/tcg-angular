@@ -1,17 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Cards } from 'src/app/interface/yugioh/cards';
-import { getApiURI } from '../utils/deck.helpers';
+import { getApiSearchURI } from '../utils/deck.helpers';
 import { DeckType } from '../utils/deckTypes';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DeckBuilderService {
+export class CardSearchService {
   constructor(private http: HttpClient) {}
 
-  getAllCards = (page: number, cardType: DeckType): Promise<Cards> => {
-    const URI = getApiURI(cardType, page);
+  getCardsBySearch = (cardType: DeckType, search: string): Promise<Cards> => {
+    const URI = getApiSearchURI(cardType, search);
 
     const promise = new Promise<Cards>((resolve, reject) => {
       this.http
