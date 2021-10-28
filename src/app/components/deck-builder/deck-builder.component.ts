@@ -17,6 +17,7 @@ export class DeckBuilderComponent implements OnInit {
   public currPage = 1;
   public selectedCard!: Card;
   public cardDeck: Card[] = [];
+  public search: string = '';
 
   constructor(
     private builderService: DeckBuilderService,
@@ -55,8 +56,13 @@ export class DeckBuilderComponent implements OnInit {
     this.selectedCard = this.cardsData.data.find((card) => card.id === id)!;
   }
 
+  handleInputChange(event: any) {
+    this.search = event.target.value;
+  }
+
   async handleCardSearch() {
-    await this.searchService.getCardsBySearch(DeckType[this.cardType as DeckType], 'charizard')
+    await this.searchService
+      .getCardsBySearch(DeckType[this.cardType as DeckType], this.search)
       .then(
         async (response) => {
           this.cardsData = deckFactory(
@@ -68,6 +74,5 @@ export class DeckBuilderComponent implements OnInit {
           alert('error' + error.statusNext);
         }
       );
-    
   }
 }

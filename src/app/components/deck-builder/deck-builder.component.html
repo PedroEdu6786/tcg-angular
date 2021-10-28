@@ -27,7 +27,7 @@
         <div
           id="{{ card.id }}"
           class="p-1 border-white"
-          style="width: 100px;"
+          style="width: 100px"
           *ngFor="let card of cardDeck"
         >
           <div class="card-header border-dark bg-transparent">
@@ -40,7 +40,10 @@
         class="col-3 border border-white text-white overflow-auto"
         style="word-wrap: break-word; height: 500px !important"
       >
-      <button (click)="handleCardSearch()">search</button>
+        <div>
+          <input type="text" placeholder="charizard" (change)="handleInputChange($event)"/>
+          <button (click)="handleCardSearch()">search</button>
+        </div>
         <div
           id="{{ card.id }}"
           class="p-1 border-white"
