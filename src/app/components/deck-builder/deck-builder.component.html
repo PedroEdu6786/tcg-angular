@@ -33,9 +33,6 @@
           <div class="card-header border-dark bg-transparent">
             <img src="{{ card.img }}" class="card-img-top" alt="..." />
           </div>
-          <div class="card-body d-flex flex-column border-dark">
-            <h5 class="card-title">{{ card.name }}</h5>
-          </div>
         </div>
       </div>
       <!-- Card search selector -->
@@ -43,6 +40,7 @@
         class="col-3 border border-white text-white overflow-auto"
         style="word-wrap: break-word; height: 500px !important"
       >
+      <button (click)="handleCardSearch()">search</button>
         <div
           id="{{ card.id }}"
           class="p-1 border-white"

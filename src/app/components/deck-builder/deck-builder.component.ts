@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DeckBuilderService } from 'src/app/service/builder/deck-builder.service';
+import { CardSearchService } from 'src/app/service/cardSearch/card-search.service';
 import { Card, Deck, DeckType } from 'src/app/service/utils/deckTypes';
 import { deckFactory } from 'src/app/service/utils/factories/deckFactory';
 
@@ -19,6 +20,7 @@ export class DeckBuilderComponent implements OnInit {
 
   constructor(
     private builderService: DeckBuilderService,
+    private searchService: CardSearchService,
     private route: ActivatedRoute
   ) {}
 
@@ -47,10 +49,25 @@ export class DeckBuilderComponent implements OnInit {
 
   handleAddToDeck() {
     this.cardDeck.push(this.selectedCard);
-    console.log(this.cardDeck);
   }
 
   handleSelectedCard(id: string) {
     this.selectedCard = this.cardsData.data.find((card) => card.id === id)!;
+  }
+
+  async handleCardSearch() {
+    await this.searchService.getCardsBySearch(DeckType[this.cardType as DeckType], 'charizard')
+      .then(
+        async (response) => {
+          this.cardsData = deckFactory(
+            response,
+            DeckType[this.cardType as DeckType]
+          );
+        },
+        (error) => {
+          alert('error' + error.statusNext);
+        }
+      );
+    
   }
 }
