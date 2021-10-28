@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DeckBuilderService } from 'src/app/service/builder/deck-builder.service';
-import { Deck, DeckType } from 'src/app/service/utils/deckTypes';
+import { Card, Deck, DeckType } from 'src/app/service/utils/deckTypes';
 import { deckFactory } from 'src/app/service/utils/factories/deckFactory';
 
 @Component({
@@ -14,6 +14,7 @@ export class DeckBuilderComponent implements OnInit {
   public cardsData!: Deck;
   public isLoading = false;
   public currPage = 1;
+  public selectedCard!: Card;
 
   constructor(
     private builderService: DeckBuilderService,
@@ -41,7 +42,9 @@ export class DeckBuilderComponent implements OnInit {
       );
 
     this.isLoading = false;
+  }
 
-    console.log(this.cardsData);
+  handleSelectedCard(id: string) {
+    this.selectedCard = this.cardsData.data.find((card) => card.id === id)!
   }
 }

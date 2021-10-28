@@ -4,7 +4,8 @@ export enum DeckType {
   Magic = 'Magic',
 }
 
-interface Card {
+export interface Card {
+  id: string;
   img: string;
   desc: string;
   name: string;

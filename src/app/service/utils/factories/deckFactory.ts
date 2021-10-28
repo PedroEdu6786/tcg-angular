@@ -5,6 +5,7 @@ export const deckFactory = (cards: any, deckType: DeckType): Deck => {
   switch (deckType) {
     case DeckType.Pokemon:
       cardData = cards.data.map((card: any) => ({
+        ...card,
         name: card.name,
         desc: card.rarity,
         img: card.images.small,
