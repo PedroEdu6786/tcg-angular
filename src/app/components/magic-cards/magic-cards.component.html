@@ -14,9 +14,9 @@
       <div
         class="bg-white col-4 mb-4 ms-2"
         style="width: 18rem"
-        *ngFor="let card of cardsData.data"
+        *ngFor="let card of cardsData.cards"
       >
-        <app-card [card]="card"> </app-card>
+        <app-card-magic [card]="card"> </app-card-magic>
       </div>
     </div>
   </div>
@@ -27,7 +27,7 @@
   ></app-pagination>
 
   <ng-template #else_b>
-    <div class="spinner-border" role="status">
+    <div class="spinner-border text-warning" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
   </ng-template>

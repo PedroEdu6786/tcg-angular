@@ -1,8 +1,8 @@
-<form class="mb-3 row" [formGroup]="cardToSearcgGroup">
-  <ul class="navbar-nav mt-3">
-    <li class="nav-item col me-2">
-        <div class="row">
-            <div class="col">
+<form class="mb-3" [formGroup]="cardToSearcgGroup">
+  <div class="row">
+    <div class=" col-3 me-2 mb-2">
+        <div class="">
+            <div class="">
                 <input
                   id="cardToSearch"
                   type="text"
@@ -12,26 +12,27 @@
                 />
             </div>
         </div>
-    </li>
-    <li class="nav-item col me-2">
-        <div class="row">
-            <div class="col">
+    </div>
+    <div class=" col-2 me-2 mb-2">
+        <div class="">
+            <div class="">
                 <select
                   class="form-select"
                   aria-label="Game"
                   formControlName="categoryToSearch"
-                  [value]='1'
+                  [value]=''
+                  (change)="changeState()"
                 >
-                  <option value="1">Any</option>
-                  <option value="2">Magic!</option>
-                  <option value="3">Pokemon</option>
-                  <option value="4">Yu-Gi-Oh</option>
+                  <option hidden value="" selected>Game category </option>
+                  <option value="Magic" >Magic!</option>
+                  <option value="Pokemon">Pokemon</option>
+                  <option value="Yugioh">Yu-Gi-Oh</option>
                 </select>
             </div>
         </div>
-    </li>
-    <li class="nav-item col">
-      <button (click)="searchCard()" class="btn btn-success">Search</button>
-    </li>
-  </ul>
+    </div>
+    <div class="col-2">
+      <button class="btn btn-success w-100 h-auto  {{buttonClass}}" (click)="searchCard()"  >Search</button>
+    </div>
+  </div>
 </form>

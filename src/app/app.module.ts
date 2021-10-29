@@ -17,6 +17,13 @@ import { FormCardSearchComponent } from './components/form-card-search/form-card
 import { SearchCardsComponent } from './components/search-cards/search-cards.component';
 import { DeckBuilderComponent } from './components/deck-builder/deck-builder.component';
 import { DeckBuilderService } from './service/builder/deck-builder.service';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { CardComponent } from './components/cards/card-yugioh/card.component';
+import { CardPokemonComponent } from './components/cards/card-pokemon/card-pokemon.component';
+import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
+import { MagicCardsComponent } from './components/magic-cards/magic-cards.component';
+import { MagicCardComponent } from './components/magic-card/magic-card.component';
+import { CardMagicComponent } from './components/cards/card-magic/card-magic.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +34,14 @@ import { DeckBuilderService } from './service/builder/deck-builder.service';
     YugiohCardComponent,
     FormCardSearchComponent,
     SearchCardsComponent,
-    DeckBuilderComponent
+    DeckBuilderComponent,
+    PaginationComponent,
+    CardComponent,
+    CardPokemonComponent,
+    PokemonCardComponent,
+    MagicCardsComponent,
+    MagicCardComponent,
+    CardMagicComponent
   ],
   imports: [
     BrowserModule,
