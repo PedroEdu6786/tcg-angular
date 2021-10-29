@@ -5,6 +5,16 @@ import { CardSearchService } from 'src/app/service/cardSearch/card-search.servic
 import { Card, Deck, DeckType } from 'src/app/service/utils/deckTypes';
 import { deckFactory } from 'src/app/service/utils/factories/deckFactory';
 
+//max number of cards in deck
+const MAX_CARDS = 60;
+
+//max num of cards repeated on each game
+const REPEATED_NUM: any = {
+  Pokemon: 3,
+  Magic: 3,
+  Yugioh: 4,
+};
+
 @Component({
   selector: 'app-deck-builder',
   templateUrl: './deck-builder.component.html',
@@ -18,6 +28,7 @@ export class DeckBuilderComponent implements OnInit {
   public selectedCard!: Card;
   public cardDeck: Card[] = [];
   public search: string = '';
+  public cardsRepeated: any = {};
 
   constructor(
     private builderService: DeckBuilderService,
@@ -48,7 +59,30 @@ export class DeckBuilderComponent implements OnInit {
     this.isLoading = false;
   }
 
+  validCardInput(): boolean {
+    if (this.cardDeck.length >= MAX_CARDS) {
+      alert('You have exceeded the maximum number of cards in a deck');
+      return false;
+    }
+
+    const numRepeated = this.cardsRepeated[this.selectedCard.id];
+
+    if (numRepeated >= REPEATED_NUM[this.cardType]) {
+      alert('Card repeated too many times');
+      return false;
+    }
+
+    if (numRepeated) {
+      this.cardsRepeated[this.selectedCard.id] += 1;
+    } else {
+      this.cardsRepeated[this.selectedCard.id] = 1;
+    }
+
+    return true;
+  }
+
   handleAddToDeck() {
+    if (!this.validCardInput()) return;
     this.cardDeck.push(this.selectedCard);
   }
 
