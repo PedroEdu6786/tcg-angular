@@ -1,12 +1,8 @@
-.images{
-    
-width: auto;
-height: 650px;
-left: 53px;
-top: 150px;
-
+.images {
+  width: 600px;
+  left: 53px;
+  top: 150px;
 }
-.text{
-    top: 450px;
+.text {
+  top: 450px;
 }
-
