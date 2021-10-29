@@ -1,27 +1,34 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+
 <div
   class="bg-image"
   style="background-image: url('/assets/img/background.png'); height: 93vh"
 >
-  <div class="container-fluid" style="padding-top: 30px">
+  <div class="container-fluid " style="padding-top: 30px; font-family: 'PT Sans', sans-serif;">
     <div class="row">
       <!-- Selected card data -->
       <div
-        class="col-2 text-white overflow-hidden bg-secondary bg-opacity-75"
-        style="word-wrap: break-word; margin-left: 40px"
+        class="col-2 text-white overflow-hidden "
+        style="word-wrap: break-word; margin-left: 80px"
       >
         <div *ngIf="selectedCard">
           <div class="card-header border-dark bg-transparent">
             <img src="{{ selectedCard.img }}" class="card-img-top" alt="..." />
           </div>
-          <div class="card-body d-flex flex-column border-dark">
-            <h5 class="card-title">{{ selectedCard.name }}</h5>
-            <p class="card-text">{{ selectedCard.desc }}</p>
+          <div class=" border border-white bg-secondary bg-opacity-75 ">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">{{ selectedCard.name }}</h5>
+              <p class="card-text" >{{ selectedCard.desc }}</p>
+            </div>
           </div>
+          
         </div>
       </div>
       <!-- Deck body -->
       <div
-        class="col-7 text-white overflow-auto bg-secondary bg-opacity-75"
+        class="col-md-6 order border border-white text-white overflow-auto bg-secondary bg-opacity-75"
         style="
           word-wrap: break-word;
           margin-left: 40px;
@@ -35,7 +42,7 @@
             <div
               id="{{ card.id }}"
               class="p-1 border-white"
-              style="width: 110px"
+              style="width: 90px"
               *ngFor="let card of cardDeck"
             >
               <div class="card-header bg-transparent">
@@ -43,7 +50,7 @@
                   src="{{ card.img }}"
                   class="card-img-top"
                   alt="..."
-                  style="height: auto; width: 95px"
+                  style="height: auto; width: 85px"
                 />
               </div>
 
@@ -55,43 +62,49 @@
       <!-- Card search selector -->
       <div
         class="
-          col-2
-          height:
-          w800px
+          col-md-2
+          height:800px
           text-white
-          overflow-auto
-          bg-secondary bg-opacity-75
+          
+          
         "
-        style="word-wrap: break-word; height: 800px !important"
+        style="margin-left: 20px; word-wrap: break-word; height: 800px !important" 
       >
-        <div>
+        <div class="position-sticky" >
           <input
             type="text"
-            placeholder="charizard"
+            placeholder="Card name"
             (change)="handleInputChange($event)"
           />
           <button (click)="handleCardSearch()">search</button>
         </div>
-        <div
-          id="{{ card.id }}"
-          class="p-1 border-white"
-          *ngFor="let card of cardsData.data"
-          (click)="handleSelectedCard(card.id)"
-          (dblclick)="handleAddToDeck()"
-        >
-          <div class="card-header border-dark bg-transparent">
-            <img
-              src="{{ card.img }}"
-              class="card-img-top"
-              alt="..."
-              style="height: auto; width: 100px"
-            />
-          </div>
-          <div class="card-body d-flex flex-column border-dark">
+
+       <!--Div to make overflow card list-->
+       <div class="overflow-auto bg-secondary bg-opacity-75 border border-white" style="margin-top: 15px; word-wrap: break-word; height: 740px !important" >
+          <div
+            id="{{ card.id }}"
+            class="p-1 border-white"
+            *ngFor="let card of cardsData.data"
+            (click)="handleSelectedCard(card.id)"
+            (dblclick)="handleAddToDeck()"
+          >
+          <div class="card-body d-flex flex-column">
             <h5 class="card-title">{{ card.name }}</h5>
             <!--  <p class="card-text">{{ card.desc }}</p> -->
           </div>
+            <div class="card-header bg-transparent">
+              <img
+                src="{{ card.img }}"
+                class="card-img-top"
+                alt="..."
+                style="height: auto; width: 100px"
+              />
+            </div>
+            
         </div>
+
+      </div>
+
       </div>
     </div>
   </div>
