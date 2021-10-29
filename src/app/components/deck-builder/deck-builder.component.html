@@ -1,13 +1,13 @@
 <div
   class="bg-image"
-  style="background-image: url('/assets/img/background.png'); height: 100vh"
+  style="background-image: url('/assets/img/background.png'); height: 93vh"
 >
-  <div class="container-fluid">
+  <div class="container-fluid" style="padding-top: 30px">
     <div class="row">
       <!-- Selected card data -->
       <div
-        class="col-3 border border-white text-white overflow-hidden"
-        style="word-wrap: break-word"
+        class="col-2 text-white overflow-hidden bg-secondary bg-opacity-75"
+        style="word-wrap: break-word; margin-left: 40px"
       >
         <div *ngIf="selectedCard">
           <div class="card-header border-dark bg-transparent">
@@ -21,27 +21,55 @@
       </div>
       <!-- Deck body -->
       <div
-        class="col-6 border border-white text-white overflow-hidden"
-        style="word-wrap: break-word"
+        class="col-7 text-white overflow-auto bg-secondary bg-opacity-75"
+        style="
+          word-wrap: break-word;
+          margin-left: 40px;
+          margin-right: 40px;
+          height: 800px !important;
+        "
       >
-        <div
-          id="{{ card.id }}"
-          class="p-1 border-white"
-          style="width: 100px"
-          *ngFor="let card of cardDeck"
-        >
-          <div class="card-header border-dark bg-transparent">
-            <img src="{{ card.img }}" class="card-img-top" alt="..." />
+        <div>
+          <div class="row">
+            <!--Inicio columnas-->
+            <div
+              id="{{ card.id }}"
+              class="p-1 border-white"
+              style="width: 110px"
+              *ngFor="let card of cardDeck"
+            >
+              <div class="card-header bg-transparent">
+                <img
+                  src="{{ card.img }}"
+                  class="card-img-top"
+                  alt="..."
+                  style="height: auto; width: 95px"
+                />
+              </div>
+
+              <!--Fin columnas-->
+            </div>
           </div>
         </div>
       </div>
       <!-- Card search selector -->
       <div
-        class="col-3 border border-white text-white overflow-auto"
-        style="word-wrap: break-word; height: 500px !important"
+        class="
+          col-2
+          height:
+          w800px
+          text-white
+          overflow-auto
+          bg-secondary bg-opacity-75
+        "
+        style="word-wrap: break-word; height: 800px !important"
       >
         <div>
-          <input type="text" placeholder="charizard" (change)="handleInputChange($event)"/>
+          <input
+            type="text"
+            placeholder="charizard"
+            (change)="handleInputChange($event)"
+          />
           <button (click)="handleCardSearch()">search</button>
         </div>
         <div
@@ -52,11 +80,16 @@
           (dblclick)="handleAddToDeck()"
         >
           <div class="card-header border-dark bg-transparent">
-            <img src="{{ card.img }}" class="card-img-top" alt="..." />
+            <img
+              src="{{ card.img }}"
+              class="card-img-top"
+              alt="..."
+              style="height: auto; width: 100px"
+            />
           </div>
           <div class="card-body d-flex flex-column border-dark">
             <h5 class="card-title">{{ card.name }}</h5>
-            <p class="card-text">{{ card.desc }}</p>
+            <!--  <p class="card-text">{{ card.desc }}</p> -->
           </div>
         </div>
       </div>
