@@ -1,0 +1,27 @@
+<nav aria-label="..." class="w-70 mt-5 pb-2">
+    <ul class="pagination row justify-content-center ">
+      <li class="page-item {{ prevButton }} col-1">
+        <button class="page-link" (click)="move( -1 )"
+          >Previous</button
+        >
+      </li>
+      <div *ngIf="currentPage != 1" class="col-1">
+        <li class="page-item ">
+          <button class="page-link" (click)="move( -1 )">{{
+            currentPage - 1
+          }}</button>
+        </li>
+      </div>
+      <li class="page-item active col-1" aria-current="page">
+        <button class="page-link" href="#">{{ currentPage }}</button>
+      </li>
+      <li class="page-item col-1">
+        <button class="page-link" (click)="move( 1 )" >{{
+          currentPage + 1
+        }}</button>
+      </li>
+      <li class="page-item col-1">
+        <button class="page-link" (click)="move( 1 )"  >Next</button>
+      </li>
+    </ul>
+  </nav>

@@ -7,9 +7,17 @@ import { SearchCardsComponent } from './components/search-cards/search-cards.com
 import { YugiohCardComponent } from './components/yugioh-card/yugioh-card.component';
 import { YugiohCardsComponent } from './components/yugioh-cards/yugioh-cards.component';
 import { DeckBuilderComponent } from './components/deck-builder/deck-builder.component';
+import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
+import { MagicCardsComponent } from './components/magic-cards/magic-cards.component';
+import { MagicCardComponent } from './components/magic-card/magic-card.component';
 const routes: Routes = [
   { path: '', component: MainComponent },
+  { path: 'magic', component: MagicCardsComponent },
+  { path: 'magic/:pagenumber', component: MagicCardsComponent },
+  { path: 'magic/card/:card-name', component: MagicCardComponent },
   { path: 'pokemon', component: PokemonCardsComponent },
+  { path: 'pokemon/:pagenumber', component: PokemonCardsComponent },
+  { path: 'pokemon/card/:card-name', component: PokemonCardComponent },
   { path: 'yugioh', component: YugiohCardsComponent },
   { path: 'yugioh/:pagenumber', component: YugiohCardsComponent },
   { path: 'yugioh/card/:card-name', component: YugiohCardComponent },

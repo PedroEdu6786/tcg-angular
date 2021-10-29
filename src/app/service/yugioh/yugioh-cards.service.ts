@@ -48,11 +48,11 @@ export class YugiohCardsService {
     return promise;
   };
   
-  searchCardsByName = (name: string): Promise<Cards> => {
+  searchCardsByName = (name: string, page : number): Promise<Cards> => {
     let promise = new Promise<Cards>((resolve, reject) => {
       
       this.http
-      .get('https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=' + name)
+      .get('https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=' + name + "&num=16&offset=" + (page - 1)*16)
       .toPromise()
       .then(
         (response) => {

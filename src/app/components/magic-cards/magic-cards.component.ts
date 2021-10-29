@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Cards } from 'src/app/interface/pokemon/pokemon-cards';
-import { PokemonCardsService } from 'src/app/service/pokemon/pokemon-cards.service';
+import { Cards } from 'src/app/interface/magic/cards';
+import { MagicService } from 'src/app/service/magic/magic.service';
 
 @Component({
-  selector: 'app-pokemon-cards',
-  templateUrl: './pokemon-cards.component.html',
-  styleUrls: ['./pokemon-cards.component.css']
+  selector: 'app-magic-cards',
+  templateUrl: './magic-cards.component.html',
+  styleUrls: ['./magic-cards.component.css']
 })
-export class PokemonCardsComponent implements OnInit {
+export class MagicCardsComponent implements OnInit {
 
-
+  
   isLoading = false;
   cardToSearch : string = "";
   cardsData !: Cards;
   currentPage !: number;
 
   constructor(
-    private cardsService : PokemonCardsService,
+    private cardsService : MagicService,
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -70,7 +70,7 @@ export class PokemonCardsComponent implements OnInit {
   }
 
   move = (shift: number) => {
-    this.router.navigate([`/pokemon/${this.currentPage + shift}`], {
+    this.router.navigate([`/magic/${this.currentPage + shift}`], {
       queryParams: { 
         card: this.cardToSearch,
       },

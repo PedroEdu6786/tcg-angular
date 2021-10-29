@@ -1,30 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Card_Data } from 'src/app/interface/yugioh/card';
-import { YugiohCardsService } from 'src/app/service/yugioh/yugioh-cards.service';
 import { Location } from '@angular/common'
+import { Card_Data } from 'src/app/interface/magic/card';
+import { MagicService } from 'src/app/service/magic/magic.service';
 
 @Component({
-  selector: 'app-yugioh-card',
-  templateUrl: './yugioh-card.component.html',
-  styleUrls: ['./yugioh-card.component.css']
+  selector: 'app-magic-card',
+  templateUrl: './magic-card.component.html',
+  styleUrls: ['./magic-card.component.css']
 })
-export class YugiohCardComponent implements OnInit {
+export class MagicCardComponent implements OnInit {
 
   isLoading = false;
   cardData !: Card_Data;
-
-  constructor(private cardsService : YugiohCardsService,
+  
+  constructor(
+    private cardsService : MagicService,
+    private location: Location,
     private route: ActivatedRoute,
     private router: Router,
-    private location: Location) { 
-      this.router.routeReuseStrategy.shouldReuseRoute = function () {
-        return false;
-    }
-  }
+  ) { }
 
   async ngOnInit() {
-    
     const cardName = this.route.snapshot.paramMap.get('card-name')!;
     console.log(cardName);
     
@@ -37,7 +34,7 @@ export class YugiohCardComponent implements OnInit {
         console.log(error)
       }
     );
-    this.isLoading = false;  
+    this.isLoading = false;
   }
 
   back(): void {

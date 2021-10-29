@@ -17,6 +17,7 @@ export class FormCardSearchComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router) {}
 
   model = new SearchCardModel('', '');
+  buttonClass = "disabled";
 
   cardToSearcgGroup = this.fb.group({
     cardToSearch: ['', Validators.required],
@@ -25,7 +26,7 @@ export class FormCardSearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.cardToSearcgGroup.patchValue({
-      categoryToSearch: '1',
+      categoryToSearch: '',
     });
   }
 
@@ -36,5 +37,9 @@ export class FormCardSearchComponent implements OnInit {
         game: this.cardToSearcgGroup.get('categoryToSearch')?.value
       },
     });
+  }
+
+  changeState() : void {
+    this.buttonClass = "enable";
   }
 }

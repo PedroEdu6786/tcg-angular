@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Card_Data } from 'src/app/interface/pokemon/pokemon-card';
-import { Cards } from 'src/app/interface/pokemon/pokemon-cards';
+import { Card_Data } from 'src/app/interface/magic/card';
+import { Cards } from 'src/app/interface/magic/cards';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PokemonCardsService {
+export class MagicService {
 
   constructor(private http: HttpClient) {
     this.http = http;
@@ -16,7 +16,7 @@ export class PokemonCardsService {
     let promise = new Promise<Cards>((resolve, reject) => {
 
       this.http
-        .get('https://api.pokemontcg.io/v2/cards?pageSize=16&page=' + page)
+        .get('https://api.magicthegathering.io/v1/cards?pageSize=16&page=' + page )
         .toPromise()
         .then(
           (response) => {
@@ -30,11 +30,11 @@ export class PokemonCardsService {
     return promise;
   };
 
-  searchCard =  (cardName : string): Promise<Card_Data> => {
+  searchCard = (cardID : string): Promise<Card_Data> => {
     let promise = new Promise<Card_Data>((resolve, reject) => {
 
       this.http
-        .get('https://api.pokemontcg.io/v2/cards/' + cardName)
+        .get('https://api.magicthegathering.io/v1/cards/' + cardID)
         .toPromise()
         .then(
           (response) => {
@@ -49,13 +49,10 @@ export class PokemonCardsService {
   };
   
   searchCardsByName = (name: string, page : number): Promise<Cards> => {
-    
-    console.log(name);
-    
     let promise = new Promise<Cards>((resolve, reject) => {
       
       this.http
-      .get('https://api.pokemontcg.io/v2/cards?q=name:' + name + '&pageSize=16&page=' + page )
+      .get('https://api.magicthegathering.io/v1/cards/?name=' + name + "&pageSize=16&page=" + page)
       .toPromise()
       .then(
         (response) => {
