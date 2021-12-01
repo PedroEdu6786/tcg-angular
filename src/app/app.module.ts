@@ -24,6 +24,8 @@ import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.com
 import { MagicCardsComponent } from './components/magic-cards/magic-cards.component';
 import { MagicCardComponent } from './components/magic-card/magic-card.component';
 import { CardMagicComponent } from './components/cards/card-magic/card-magic.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +43,9 @@ import { CardMagicComponent } from './components/cards/card-magic/card-magic.com
     PokemonCardComponent,
     MagicCardsComponent,
     MagicCardComponent,
-    CardMagicComponent
+    CardMagicComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
