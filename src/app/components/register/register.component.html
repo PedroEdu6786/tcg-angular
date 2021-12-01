@@ -1,0 +1,49 @@
+<div
+  class="d-flex flex-column justify-content-center w-100 h-100 text-white"
+  style="background-color: #2e3338; padding-top: 200px; padding-bottom: 200px"
+>
+  <div class="container">
+    <h1>Sign Up</h1>
+    <form>
+      <div class="form-group">
+        <label for="nameInput">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nameInput"
+          placeholder="Enter name"
+          name="name"
+          (change)="handleNameInput($event)"
+        />
+        <label for="exampleInputEmail1">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          placeholder="Enter email"
+          name="email"
+          (change)="handleEmailInput($event)"
+        />
+        <small id="emailHelp" class="form-text text-muted"
+          >We'll never share your email with anyone else.</small
+        >
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="exampleInputPassword1"
+          placeholder="Password"
+          name="password"
+          (change)="handlePasswordInput($event)"
+        />
+      </div>
+      <br />
+      <button type="submit" class="btn btn-primary" (click)="handleRegister()">
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
