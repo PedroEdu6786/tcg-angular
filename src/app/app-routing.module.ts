@@ -12,20 +12,66 @@ import { MagicCardsComponent } from './components/magic-cards/magic-cards.compon
 import { MagicCardComponent } from './components/magic-card/magic-card.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { IsAuthenticatedGuard } from './guards/is-authenticated.guard';
+
 const routes: Routes = [
   { path: '', component: MainComponent },
-  { path: 'magic', component: MagicCardsComponent },
-  { path: 'magic/:pagenumber', component: MagicCardsComponent },
-  { path: 'magic/card/:card-name', component: MagicCardComponent },
-  { path: 'pokemon', component: PokemonCardsComponent },
+  {
+    path: 'magic',
+    component: MagicCardsComponent,
+    canActivate: [IsAuthenticatedGuard],
+  },
+  {
+    path: 'magic/:pagenumber',
+    component: MagicCardsComponent,
+    canActivate: [IsAuthenticatedGuard],
+  },
+  {
+    path: 'magic/card/:card-name',
+    component: MagicCardComponent,
+    canActivate: [IsAuthenticatedGuard],
+  },
+  {
+    path: 'pokemon',
+    component: PokemonCardsComponent,
+    canActivate: [IsAuthenticatedGuard],
+  },
   { path: 'pokemon/:pagenumber', component: PokemonCardsComponent },
-  { path: 'pokemon/card/:card-name', component: PokemonCardComponent },
-  { path: 'yugioh', component: YugiohCardsComponent },
-  { path: 'yugioh/:pagenumber', component: YugiohCardsComponent },
-  { path: 'yugioh/card/:card-name', component: YugiohCardComponent },
-  { path: 'deckselector', component: DeckSelectorComponent },
-  { path: 'search', component: SearchCardsComponent },
-  { path: 'builder/:cardType', component: DeckBuilderComponent },
+  {
+    path: 'pokemon/card/:card-name',
+    component: PokemonCardComponent,
+    canActivate: [IsAuthenticatedGuard],
+  },
+  {
+    path: 'yugioh',
+    component: YugiohCardsComponent,
+    canActivate: [IsAuthenticatedGuard],
+  },
+  {
+    path: 'yugioh/:pagenumber',
+    component: YugiohCardsComponent,
+    canActivate: [IsAuthenticatedGuard],
+  },
+  {
+    path: 'yugioh/card/:card-name',
+    component: YugiohCardComponent,
+    canActivate: [IsAuthenticatedGuard],
+  },
+  {
+    path: 'deckselector',
+    component: DeckSelectorComponent,
+    canActivate: [IsAuthenticatedGuard],
+  },
+  {
+    path: 'search',
+    component: SearchCardsComponent,
+    canActivate: [IsAuthenticatedGuard],
+  },
+  {
+    path: 'builder/:cardType',
+    component: DeckBuilderComponent,
+    canActivate: [IsAuthenticatedGuard],
+  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 ];
