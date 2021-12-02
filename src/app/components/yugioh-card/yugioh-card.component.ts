@@ -13,6 +13,7 @@ export class YugiohCardComponent implements OnInit {
 
   isLoading = false;
   cardData !: Card_Data;
+  public path: string = window.location.href;
 
   constructor(private cardsService : YugiohCardsService,
     private route: ActivatedRoute,

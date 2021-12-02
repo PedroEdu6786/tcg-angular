@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DeckBuilderService } from 'src/app/service/builder/deck-builder.service';
 import { CardSearchService } from 'src/app/service/cardSearch/card-search.service';
+import { DecksService } from 'src/app/service/decks/decks.service';
 import { Card, Deck, DeckType } from 'src/app/service/utils/deckTypes';
 import { deckFactory } from 'src/app/service/utils/factories/deckFactory';
 
@@ -29,11 +30,13 @@ export class DeckBuilderComponent implements OnInit {
   public cardDeck: Card[] = [];
   public search: string = '';
   public cardsRepeated: any = {};
+  public deckName: string = '';
 
   constructor(
     private builderService: DeckBuilderService,
     private searchService: CardSearchService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private deckService: DecksService
   ) {}
 
   async ngOnInit() {
@@ -92,6 +95,21 @@ export class DeckBuilderComponent implements OnInit {
 
   handleInputChange(event: any) {
     this.search = event.target.value;
+  }
+
+  handleDeckName(event: any) {
+    this.deckName = event.target.value;
+  }
+
+  async saveDeck() {
+    let userData: any = localStorage.getItem('user');
+    userData = JSON.parse(userData);
+    await this.deckService
+      .postUserDeck(this.deckName, userData._id, this.cardDeck, userData.token)
+      .then(async (response) => {
+        console.log(response);
+        alert('Deck posted')
+      });
   }
 
   async handleCardSearch() {
