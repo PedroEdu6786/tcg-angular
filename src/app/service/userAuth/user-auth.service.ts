@@ -11,10 +11,18 @@ export class UserAuthService {
 
   constructor(private http: HttpClient) {}
 
+  /**
+   * Validates if there's a user logged in
+   */
   get isLoggedIn() {
     return this.loggedIn.asObservable(); // {2}
   }
 
+  /**
+   * Logs in a user
+   * @param {userData} userData - object with email and password to authenticate user
+   * @returns {Promise<IUserData>}
+   */
   login = (userData: any): Promise<IUserData> => {
     const URI = 'http://localhost:5000/api/users/login';
 
@@ -36,6 +44,11 @@ export class UserAuthService {
     return promise;
   };
 
+  /**
+   * Registers in a user
+   * @param {userData} userData - object with email, name and password to authenticate user
+   * @returns {Promise<IUserData>}
+   */
   register = (userData: any): Promise<IUserData> => {
     const URI = 'http://localhost:5000/api/users';
 
@@ -58,6 +71,11 @@ export class UserAuthService {
     return promise;
   };
 
+  /**
+   * Gets all users for admin users
+   * @param {string} token - token to authorize admin users
+   * @returns {Promise<IUserData>}
+   */
   getUsers = (token: string): Promise<IUserData> => {
     const URI = 'http://localhost:5000/api/users';
 
@@ -80,6 +98,12 @@ export class UserAuthService {
     return promise;
   };
 
+  /**
+   * Update a user
+   * @param {string} id - id of user to update
+   * @param {string} token - token to authorize user
+   * @returns {Promise<IUserData>}
+   */
   updateUser = (id: string, token: string): Promise<IUserData> => {
     const URI = `http://localhost:5000/api/users/${id}`;
 

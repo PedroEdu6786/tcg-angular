@@ -19,6 +19,12 @@ export class AdminComponent implements OnInit {
 
   @ViewChild('pdfTable', { static: false }) pdfTable!: ElementRef;
 
+  /**
+   * Admin component
+   * @constructor
+   * @param {DecksService} deckService - deck services
+   * @param {UserAuthService} userAuthService - user auth services
+   */
   constructor(
     private deckService: DecksService,
     private userData: UserAuthService
@@ -29,6 +35,10 @@ export class AdminComponent implements OnInit {
     await this.getUsers();
   }
 
+  /**
+   * Update user to be admin
+   * @param {string} userId - user's id
+   */
   async updateUser(userId: string) {
     let userData: any = localStorage.getItem('user');
     userData = JSON.parse(userData);
@@ -44,6 +54,10 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  /**
+   * Get all users in the system, only available for admins
+   * @param {string} author - The author of the book.
+   */
   async getUsers() {
     let userData: any = localStorage.getItem('user');
     userData = JSON.parse(userData);
@@ -59,6 +73,9 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  /**
+   * Get all decks in system, only available for admins
+   */
   async getDecks() {
     let userData: any = localStorage.getItem('user');
     userData = JSON.parse(userData);
@@ -72,6 +89,9 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  /**
+   * Export users data tu excel sheet
+   */
   exportexcel(): void {
     let element = document.getElementById('usertable');
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
@@ -82,6 +102,9 @@ export class AdminComponent implements OnInit {
     XLSX.writeFile(wb, this.fileName);
   }
 
+  /**
+   * Exports users data to pdf
+   */
   public downloadAsPDF() {
     let data: any = document.getElementById('usertable');
     html2canvas(data).then((canvas) => {

@@ -11,6 +11,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class IsAdminGuard implements CanActivate {
+  /**
+   * Guard for route validation if the user is admin
+   */
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

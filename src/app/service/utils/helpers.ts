@@ -1,3 +1,7 @@
+/**
+ * Build URI params given an object
+ * @param {any} data - object to stringify
+ */
 export const buildQueryParams = (data: any) => {
   return Object.entries(data)
     .map(([key, value]) => {

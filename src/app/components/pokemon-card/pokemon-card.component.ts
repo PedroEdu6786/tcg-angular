@@ -14,6 +14,13 @@ export class PokemonCardComponent implements OnInit {
   public path: string = window.location.href;
   cardData!: Card_Data;
 
+  /**
+   * Pokemon Card constructor
+   * @constructor
+   * @param {PokemonCardsService} cardsService - The cardsService.
+   * @param {location} Location - location to navigate
+   * @param {ActivatedRoute} route - activated route for routing.
+   */
   constructor(
     private cardsService: PokemonCardsService,
     private location: Location,
@@ -21,6 +28,9 @@ export class PokemonCardComponent implements OnInit {
     private router: Router
   ) {}
 
+  /**
+   * ngOnInit to get magic card from api
+   */
   async ngOnInit() {
     const cardName = this.route.snapshot.paramMap.get('card-name')!;
     console.log(cardName);
@@ -37,6 +47,9 @@ export class PokemonCardComponent implements OnInit {
     this.isLoading = false;
   }
 
+  /**
+   * Function to go previous location
+   */
   back(): void {
     this.location.back();
   }

@@ -4,60 +4,68 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { YugiohCardsService } from 'src/app/service/yugioh/yugioh-cards.service';
 import { DeckType } from 'src/app/service/utils/deckTypes';
 
-
 @Component({
   selector: 'app-search-cards',
   templateUrl: './search-cards.component.html',
-  styleUrls: ['./search-cards.component.css']
+  styleUrls: ['./search-cards.component.css'],
 })
 export class SearchCardsComponent implements OnInit {
-
   isLoading = false;
-  cardsData !: Cards;
-  cardName !: string;
-  category !: string;
+  cardsData!: Cards;
+  cardName!: string;
+  category!: string;
 
-  constructor(private router: Router,
-    private route : ActivatedRoute,
-    private cardsService : YugiohCardsService) { this.router.routeReuseStrategy.shouldReuseRoute = function () {
+  /**
+   * DeckBuilder constructor
+   * @constructor
+   * @param {Router} router - Routing helper for pagination
+   * @param {location} Location - location to navigate
+   */
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private cardsService: YugiohCardsService
+  ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
-    }}
+    };
+  }
 
-  async ngOnInit(){
-    this.route.queryParams
-      .subscribe(params => {
-        console.log(params); // { order: "popular" }
+  /**
+   * ngOnInit for fetching cards data by category
+   */
+  async ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      console.log(params); // { order: "popular" }
 
-        this.cardName = params.card;
-        this.category = params.game;
-        console.log(this.cardName + this.category); // popular
-      }
-    );
+      this.cardName = params.card;
+      this.category = params.game;
+      console.log(this.cardName + this.category); // popular
+    });
 
-    if(this.category === DeckType.Yugioh){
+    if (this.category === DeckType.Yugioh) {
       this.router.navigate(['/yugioh/'], {
-        queryParams: { 
+        queryParams: {
           card: this.cardName,
-          game: this.category
+          game: this.category,
         },
       });
     }
-    if(this.category === DeckType.Pokemon){
+    if (this.category === DeckType.Pokemon) {
       this.router.navigate(['/pokemon/'], {
-        queryParams: { 
+        queryParams: {
           card: this.cardName,
-          game: this.category
+          game: this.category,
         },
       });
     }
-    if(this.category === DeckType.Magic){
+    if (this.category === DeckType.Magic) {
       this.router.navigate(['/magic/'], {
-        queryParams: { 
+        queryParams: {
           card: this.cardName,
-          game: this.category
+          game: this.category,
         },
       });
     }
   }
-
 }

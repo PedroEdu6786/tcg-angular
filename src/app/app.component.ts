@@ -15,14 +15,24 @@ export class AppComponent {
   isAdmin = false;
   loggedIn = false;
 
+  /**
+   * App component
+   * @constructor
+   */
   constructor(private authService: UserAuthService) {}
 
+  /**
+   * Function for logging out.
+   */
   logout() {
     localStorage.removeItem('user');
     localStorage.removeItem('loggedIn');
-    window.location.href = "/"
+    window.location.href = '/';
   }
 
+  /**
+   * Init for user authentication
+   */
   async ngOnInit() {
     let user: any = localStorage.getItem('user');
     user = JSON.parse(user);

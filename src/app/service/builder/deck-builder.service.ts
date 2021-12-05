@@ -10,6 +10,12 @@ import { DeckType } from '../utils/deckTypes';
 export class DeckBuilderService {
   constructor(private http: HttpClient) {}
 
+  /**
+   * Get all cards from 3rd Party APIS by pagination
+   * @param {number} page - page number for pagination
+   * @param {DeckType} cardType - Game selected for cards (Pokemon, Yugioh, Magic)
+   * @returns Promise of Cards
+   */
   getAllCards = (page: number, cardType: DeckType): Promise<Cards> => {
     const URI = getApiURI(cardType, page);
 

@@ -1,5 +1,11 @@
 import { Deck, DeckType } from '../deckTypes';
 
+  /**
+   * Returns a deck with certain parameters given an array of cards
+   * @param {DeckType} card - name of card game
+   * @param {any} cards - array of cards to turn into deck
+   * @returns {Deck}
+   */
 export const deckFactory = (cards: any, deckType: DeckType): Deck => {
   let cardData;
   switch (deckType) {

@@ -32,6 +32,14 @@ export class DeckBuilderComponent implements OnInit {
   public cardsRepeated: any = {};
   public deckName: string = '';
 
+  /**
+   * DeckBuilder constructor
+   * @constructor
+   * @param {DeckBuilderService} builderService - The builderService.
+   * @param {CardSearchService} searchService - The card search service.
+   * @param {ActivatedRoute} route - activated route for routing.
+   * @param {DecksService} deckService - Deck services
+   */
   constructor(
     private builderService: DeckBuilderService,
     private searchService: CardSearchService,
@@ -39,6 +47,9 @@ export class DeckBuilderComponent implements OnInit {
     private deckService: DecksService
   ) {}
 
+  /**
+   * On init get all cards from game to build deck
+   */
   async ngOnInit() {
     let cardType = this.route.snapshot.paramMap.get('cardType')!;
     cardType = cardType.charAt(0).toUpperCase() + cardType.slice(1);
@@ -62,6 +73,10 @@ export class DeckBuilderComponent implements OnInit {
     this.isLoading = false;
   }
 
+  /**
+   * Validate if the user can input more cards
+   * @returns {boolean}
+   */
   validCardInput(): boolean {
     if (this.cardDeck.length >= MAX_CARDS) {
       alert('You have exceeded the maximum number of cards in a deck');
@@ -84,23 +99,38 @@ export class DeckBuilderComponent implements OnInit {
     return true;
   }
 
+  /**
+   * Adds cards to deck
+   */
   handleAddToDeck() {
     if (!this.validCardInput()) return;
     this.cardDeck.push(this.selectedCard);
   }
 
+  /**
+   * Saves selected card
+   */
   handleSelectedCard(id: string) {
     this.selectedCard = this.cardsData.data.find((card) => card.id === id)!;
   }
 
+  /**
+   * Handles input for search
+   */
   handleInputChange(event: any) {
     this.search = event.target.value;
   }
 
+  /**
+   * Handles input for deck name
+   */
   handleDeckName(event: any) {
     this.deckName = event.target.value;
   }
 
+  /**
+   * Saves deck to backend
+   */
   async saveDeck() {
     if (this.cardDeck.length <= 10) {
       alert('Not enough cards for deck');
@@ -121,6 +151,9 @@ export class DeckBuilderComponent implements OnInit {
       });
   }
 
+  /**
+   * Search cards by input using the respective API
+   */
   async handleCardSearch() {
     await this.searchService
       .getCardsBySearch(DeckType[this.cardType as DeckType], this.search)
