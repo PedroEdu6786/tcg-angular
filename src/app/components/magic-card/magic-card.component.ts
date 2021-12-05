@@ -7,37 +7,37 @@ import { MagicService } from 'src/app/service/magic/magic.service';
 @Component({
   selector: 'app-magic-card',
   templateUrl: './magic-card.component.html',
-  styleUrls: ['./magic-card.component.css']
+  styleUrls: ['./magic-card.component.css'],
 })
 export class MagicCardComponent implements OnInit {
-
+  public path: string = window.location.href;
   isLoading = false;
-  cardData !: Card_Data;
-  
+  cardData!: Card_Data;
+
   constructor(
-    private cardsService : MagicService,
+    private cardsService: MagicService,
     private location: Location,
     private route: ActivatedRoute,
-    private router: Router,
-  ) { }
+    private router: Router
+  ) {}
 
   async ngOnInit() {
     const cardName = this.route.snapshot.paramMap.get('card-name')!;
     console.log(cardName);
-    
+
     this.isLoading = true;
     await this.cardsService.searchCard(cardName).then(
       async (response) => {
-       this.cardData = response;
+        this.cardData = response;
       },
       (error) => {
-        console.log(error)
+        console.log(error);
       }
     );
     this.isLoading = false;
   }
 
   back(): void {
-    this.location.back()
+    this.location.back();
   }
 }

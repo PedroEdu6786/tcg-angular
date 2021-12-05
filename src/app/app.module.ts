@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { QRCodeModule } from 'angular2-qrcode';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,6 +27,8 @@ import { MagicCardComponent } from './components/magic-card/magic-card.component
 import { CardMagicComponent } from './components/cards/card-magic/card-magic.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { MyDecksComponent } from './components/my-decks/my-decks.component';
+import { AdminComponent } from './components/admin/admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,16 +48,24 @@ import { RegisterComponent } from './components/register/register.component';
     MagicCardComponent,
     CardMagicComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    MyDecksComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    QRCodeModule,
   ],
-  providers: [YugiohCardsService, PokemonCardsService, DeckSelectorService, DeckBuilderService],
-  bootstrap: [AppComponent]
+  providers: [
+    YugiohCardsService,
+    PokemonCardsService,
+    DeckSelectorService,
+    DeckBuilderService,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

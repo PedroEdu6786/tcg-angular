@@ -84,7 +84,13 @@
             placeholder="Card name"
             (change)="handleInputChange($event)"
           />
+          <input
+            type="text"
+            placeholder="Name your deck"
+            (change)="handleDeckName($event)"
+          />
           <button (click)="handleCardSearch()">search</button>
+          <button (click)="saveDeck()">Save deck</button>
         </div>
 
         <!--Div to make overflow card list-->
