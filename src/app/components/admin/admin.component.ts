@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import * as XLSX from 'xlsx';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+
 import { DecksService } from 'src/app/service/decks/decks.service';
 import { UserAuthService } from 'src/app/service/userAuth/user-auth.service';
 
@@ -10,6 +14,10 @@ import { UserAuthService } from 'src/app/service/userAuth/user-auth.service';
 export class AdminComponent implements OnInit {
   decksLink: any;
   users: any;
+  fileName = 'userData.xlsx';
+  pdfName = 'userData.pdf';
+
+  @ViewChild('pdfTable', { static: false }) pdfTable!: ElementRef;
 
   constructor(
     private deckService: DecksService,
@@ -56,19 +64,31 @@ export class AdminComponent implements OnInit {
     userData = JSON.parse(userData);
     await this.deckService.getDecks(userData.token).then(
       async (res) => {
-        // console.log(res)
         this.decksLink = res.filePath;
       },
       (err) => {
         alert(err.error.message);
       }
     );
-
-    // this.download()
   }
 
-  download() {
-    // console.log(this.decksLink)
-    window.location.href = this.decksLink;
+  exportexcel(): void {
+    let element = document.getElementById('usertable');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    XLSX.writeFile(wb, this.fileName);
+  }
+
+  public downloadAsPDF() {
+    let data: any = document.getElementById('usertable');
+    html2canvas(data).then((canvas) => {
+      const contentDataURL = canvas.toDataURL('image/png');
+      let pdf = new jsPDF('l', 'cm', 'a4');
+      pdf.addImage(contentDataURL, 'PNG', 0, 0, 29.7, 21.0);
+      pdf.save(this.pdfName);
+    });
   }
 }
