@@ -59,4 +59,48 @@ export class DecksService {
 
     return promise;
   }
+  
+  async deleteUserDeck(id: string, token: string) {
+    const URI = `http://localhost:5000/api/decks/${id}`;
+
+    const promise = new Promise<any>((resolve, reject) => {
+      this.http
+        .delete(URI, { headers: { Authorization: `Bearer ${token}` } })
+        .toPromise()
+        .then(
+          (response) => {
+            console.log(response);
+            resolve(response as any);
+          },
+          (error) => {
+            console.log(error);
+            reject(error);
+          }
+        );
+    });
+
+    return promise;
+  }
+
+  async getDecks(token: string) {
+    const URI = `http://localhost:5000/api/decks/admin`;
+
+    const promise = new Promise<any>((resolve, reject) => {
+      this.http
+        .get(URI, { headers: { Authorization: `Bearer ${token}` } })
+        .toPromise()
+        .then(
+          (response) => {
+            console.log(response);
+            resolve(response as any);
+          },
+          (error) => {
+            console.error(error);
+            reject(error);
+          }
+        );
+    });
+
+    return promise;
+  }
 }

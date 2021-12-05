@@ -7,9 +7,9 @@ import { UserAuthService } from 'src/app/service/userAuth/user-auth.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  public name!: string;
-  public email!: string;
-  public password!: string;
+  public name: string = '';
+  public email: string = '';
+  public password: string = '';
 
   constructor(private userAuthService: UserAuthService) {}
 
@@ -26,15 +26,39 @@ export class RegisterComponent implements OnInit {
     this.password = event.target.value;
   }
 
+  validateEmail = (email: string) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
+
   async handleRegister() {
     const userData = {
       name: this.name,
       email: this.email,
       password: this.password,
     };
+
+    if (this.name === '') {
+      alert('Enter name');
+      return;
+    }
+    if (this.password === '') {
+      alert('Enter password');
+      return;
+    }
+
+    if (!this.validateEmail(this.email)) {
+      alert('Enter valid email');
+      return;
+    }
     await this.userAuthService.register(userData).then(
       async (res) => {
         console.log('Logged in');
+        alert('Logged in');
+        window.location.href = 'http://localhost:4200/';
         localStorage.setItem('user', JSON.stringify(res));
       },
       (err) => {

@@ -102,13 +102,22 @@ export class DeckBuilderComponent implements OnInit {
   }
 
   async saveDeck() {
+    if (this.cardDeck.length <= 10) {
+      alert('Not enough cards for deck');
+      return;
+    }
+    if (this.deckName === '') {
+      alert('Name your deck');
+      return;
+    }
+
     let userData: any = localStorage.getItem('user');
     userData = JSON.parse(userData);
     await this.deckService
       .postUserDeck(this.deckName, userData._id, this.cardDeck, userData.token)
       .then(async (response) => {
         console.log(response);
-        alert('Deck posted')
+        alert('Deck posted');
       });
   }
 

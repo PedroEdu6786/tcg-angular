@@ -26,8 +26,9 @@ export class LoginComponent implements OnInit {
     const userData = { email: this.email, password: this.password };
     await this.userAuthService.login(userData).then(
       async (res) => {
-        console.log('Logged in')
-         localStorage.setItem('user', JSON.stringify(res));
+        alert('Logged in');
+        window.location.href = 'http://localhost:4200/';
+        localStorage.setItem('user', JSON.stringify(res));
       },
       (err) => {
         alert(err.error.message);

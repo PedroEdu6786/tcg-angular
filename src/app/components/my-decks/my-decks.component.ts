@@ -15,8 +15,17 @@ export class MyDecksComponent implements OnInit {
     this.handleDecks();
   }
 
-  async deleteDeck() {
-    
+  async deleteDeck(event: any) {
+    let userData: any = localStorage.getItem('user');
+    userData = JSON.parse(userData);
+    await this.deckService.deleteUserDeck(event.target.id, userData.token).then(
+      async (res) => {
+        alert('Deleted');
+      },
+      (err) => {
+        alert(err.error.message);
+      }
+    );;
   }
 
   async handleDecks() {

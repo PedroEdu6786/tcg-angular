@@ -13,49 +13,43 @@ import { MagicCardComponent } from './components/magic-card/magic-card.component
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { IsAuthenticatedGuard } from './guards/is-authenticated.guard';
+import { AdminComponent } from './components/admin/admin.component';
+import { IsAdminGuard } from './guards/is-admin.guard';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
   {
     path: 'magic',
     component: MagicCardsComponent,
-    canActivate: [IsAuthenticatedGuard],
   },
   {
     path: 'magic/:pagenumber',
     component: MagicCardsComponent,
-    canActivate: [IsAuthenticatedGuard],
   },
   {
     path: 'magic/card/:card-name',
     component: MagicCardComponent,
-    canActivate: [IsAuthenticatedGuard],
   },
   {
     path: 'pokemon',
     component: PokemonCardsComponent,
-    canActivate: [IsAuthenticatedGuard],
   },
   { path: 'pokemon/:pagenumber', component: PokemonCardsComponent },
   {
     path: 'pokemon/card/:card-name',
     component: PokemonCardComponent,
-    canActivate: [IsAuthenticatedGuard],
   },
   {
     path: 'yugioh',
     component: YugiohCardsComponent,
-    canActivate: [IsAuthenticatedGuard],
   },
   {
     path: 'yugioh/:pagenumber',
     component: YugiohCardsComponent,
-    canActivate: [IsAuthenticatedGuard],
   },
   {
     path: 'yugioh/card/:card-name',
     component: YugiohCardComponent,
-    canActivate: [IsAuthenticatedGuard],
   },
   {
     path: 'deckselector',
@@ -71,6 +65,11 @@ const routes: Routes = [
     path: 'builder/:cardType',
     component: DeckBuilderComponent,
     canActivate: [IsAuthenticatedGuard],
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [IsAuthenticatedGuard, IsAdminGuard],
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

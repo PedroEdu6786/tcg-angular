@@ -28,6 +28,7 @@ import { CardMagicComponent } from './components/cards/card-magic/card-magic.com
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { MyDecksComponent } from './components/my-decks/my-decks.component';
+import { AdminComponent } from './components/admin/admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +50,7 @@ import { MyDecksComponent } from './components/my-decks/my-decks.component';
     LoginComponent,
     RegisterComponent,
     MyDecksComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
