@@ -5,7 +5,7 @@
   <div class="container">
     <h1>Users Data</h1>
     <br />
-    <table class="table table-striped table-dark">
+    <table class="table table-striped table-dark" id="usertable" #table >
       <thead>
         <tr>
           <th scope="col">ID</th>
@@ -28,7 +28,7 @@
       </tbody>
     </table>
     <br />
-    <button type="submit" class="btn btn-primary">Generate pdf</button>
-    <button type="submit" class="btn btn-primary">Generate excel</button>
+    <button type="submit" class="btn btn-primary" (click)="downloadAsPDF()">Generate pdf</button>
+    <button type="submit" class="btn btn-primary" (click)="exportexcel()">Generate excel</button>
   </div>
 </div>
