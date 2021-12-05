@@ -27,8 +27,9 @@ export class LoginComponent implements OnInit {
     await this.userAuthService.login(userData).then(
       async (res) => {
         alert('Logged in');
-        window.location.href = 'http://localhost:4200/';
+        window.location.href = '/';
         localStorage.setItem('user', JSON.stringify(res));
+        localStorage.setItem('loggedIn', 'true');
       },
       (err) => {
         alert(err.error.message);

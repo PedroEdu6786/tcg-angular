@@ -21,6 +21,8 @@ export class MyDecksComponent implements OnInit {
     await this.deckService.deleteUserDeck(event.target.id, userData.token).then(
       async (res) => {
         alert('Deleted');
+            window.location.href = '/deckselector';
+
       },
       (err) => {
         alert(err.error.message);

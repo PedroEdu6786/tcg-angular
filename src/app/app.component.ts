@@ -12,12 +12,23 @@ export class AppComponent {
 
   isLoggedIn!: Observable<boolean>; // {1}
 
-  isAdmin = true;
-  loggedIn = true;
+  isAdmin = false;
+  loggedIn = false;
 
   constructor(private authService: UserAuthService) {}
 
-  async ngOnInit() {
+  logout() {
+    localStorage.removeItem('user');
+    localStorage.removeItem('loggedIn');
+    window.location.href = "/"
+  }
 
+  async ngOnInit() {
+    let user: any = localStorage.getItem('user');
+    user = JSON.parse(user);
+    this.isAdmin = user && user.isAdmin;
+    let loggedIn: any = localStorage.getItem('loggedIn');
+    loggedIn = JSON.parse(loggedIn);
+    this.loggedIn = loggedIn;
   }
 }
