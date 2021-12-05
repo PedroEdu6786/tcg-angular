@@ -14,32 +14,50 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
   styleUrls: ['./form-card-search.component.css'],
 })
 export class FormCardSearchComponent implements OnInit {
+  /**
+   * FormCardSearch constructor
+   * @constructor
+   * @param {FormBuilder} fb - Formbuilder for search component form.
+   * @param {Router} route - activated route for routing.
+   */
   constructor(private fb: FormBuilder, private router: Router) {}
 
   model = new SearchCardModel('', '');
-  buttonClass = "disabled";
+  buttonClass = 'disabled';
 
+  /**
+   * Use card to search a group of cards
+   */
   cardToSearcgGroup = this.fb.group({
     cardToSearch: ['', Validators.required],
     categoryToSearch: [''],
   });
 
+  /**
+   * ngOnInit to initialize card group
+   */
   ngOnInit(): void {
     this.cardToSearcgGroup.patchValue({
       categoryToSearch: '',
     });
   }
 
+  /**
+   * Search a card function
+   */
   searchCard(): void {
     this.router.navigate(['/search/'], {
-      queryParams: { 
+      queryParams: {
         card: this.cardToSearcgGroup.get('cardToSearch')?.value,
-        game: this.cardToSearcgGroup.get('categoryToSearch')?.value
+        game: this.cardToSearcgGroup.get('categoryToSearch')?.value,
       },
     });
   }
 
-  changeState() : void {
-    this.buttonClass = "enable";
+  /**
+   * Enable search when there's a valid input
+   */
+  changeState(): void {
+    this.buttonClass = 'enable';
   }
 }

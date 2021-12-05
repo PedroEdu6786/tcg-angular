@@ -13,6 +13,11 @@ export const deckURI = {
   Magic: MAGIC_API,
 };
 
+/**
+ * Get API URI dynamically depending on deck type
+ * @param {DeckType} card - name of card game
+ * @param {number} page - page for pagination
+ */
 export const getApiURI = (card: DeckType, page: number) => {
   let params = '';
 
@@ -37,6 +42,11 @@ const searchParamApi = {
   Magic: 'name',
 };
 
+/**
+ * Get params for URI fetch
+ * @param {DeckType} card - name of card game
+ * @param {number} search - param to search
+ */
 export const getApiSearchURI = (card: DeckType, search: string) => {
   let params = '';
 

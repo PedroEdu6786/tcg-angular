@@ -12,6 +12,9 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   providedIn: 'root',
 })
 export class IsAuthenticatedGuard implements CanActivate {
+  /**
+   * Guard for route validation if the user is loggedIn
+   */
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -25,10 +28,10 @@ export class IsAuthenticatedGuard implements CanActivate {
     const helper = new JwtHelperService();
     const isExpired = helper.isTokenExpired(userData.token);
 
-    if(!isExpired) {
-      localStorage.setItem('loggedIn', "true");
+    if (!isExpired) {
+      localStorage.setItem('loggedIn', 'true');
     } else {
-      localStorage.setItem('loggedIn', "false");
+      localStorage.setItem('loggedIn', 'false');
     }
 
     return !isExpired;

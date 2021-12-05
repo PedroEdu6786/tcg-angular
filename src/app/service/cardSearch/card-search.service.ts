@@ -10,6 +10,12 @@ import { DeckType } from '../utils/deckTypes';
 export class CardSearchService {
   constructor(private http: HttpClient) {}
 
+  /**
+   * Get cards by search parameter
+   * @param {DeckType} cardType - Game selected for cards (Pokemon, Yugioh, Magic)
+   * @param {string} search - Name of card to search
+   * @returns {Promise<Cards>}
+   */
   getCardsBySearch = (cardType: DeckType, search: string): Promise<Cards> => {
     const URI = getApiSearchURI(cardType, search);
 

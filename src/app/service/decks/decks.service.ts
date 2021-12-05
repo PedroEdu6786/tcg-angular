@@ -7,6 +7,13 @@ import { Injectable } from '@angular/core';
 export class DecksService {
   constructor(private http: HttpClient) {}
 
+  /**
+   * Save user card request to backend
+   * @param {string} name - Name of card to search
+   * @param {string} userId - id of user
+   * @param {any} cards - array of cards selected
+   * @param {string} token - token to authorize user
+   */
   async postUserDeck(name: string, userId: string, cards: any, token: string) {
     const URI = 'http://localhost:5000/api/decks';
 
@@ -59,7 +66,7 @@ export class DecksService {
 
     return promise;
   }
-  
+
   async deleteUserDeck(id: string, token: string) {
     const URI = `http://localhost:5000/api/decks/${id}`;
 

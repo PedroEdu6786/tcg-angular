@@ -11,21 +11,40 @@ export class RegisterComponent implements OnInit {
   public email: string = '';
   public password: string = '';
 
+  /**
+   * Register constructor
+   * @constructor
+   * @param {UserAuthService} userAuthService - auth service
+   */
   constructor(private userAuthService: UserAuthService) {}
 
   ngOnInit(): void {}
 
+  /**
+   * handle name input data
+   */
   handleNameInput(event: any): void {
     this.name = event.target.value;
   }
+
+  /**
+   * handle email input data
+   */
   handleEmailInput(event: any): void {
     this.email = event.target.value;
   }
 
+  /**
+   * handle password input data
+   */
   handlePasswordInput(event: any): void {
     this.password = event.target.value;
   }
 
+  /**
+   * email validation function
+   * @param {string} email - email to validate
+   */
   validateEmail = (email: string) => {
     return String(email)
       .toLowerCase()
@@ -34,6 +53,9 @@ export class RegisterComponent implements OnInit {
       );
   };
 
+  /**
+   * handle register to application by consuming the API
+   */
   async handleRegister() {
     const userData = {
       name: this.name,
